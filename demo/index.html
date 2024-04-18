@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 用于修改HTML样式时文件，不参与打包 -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="DuSky">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=yes" />
+  <title>jmbfr</title>
+</head>
+<style>
+  #openJmbfr {
+    margin-bottom: 20px;
+  }
+
+  .text {
+    padding: 20px 0;
+    width: 100%;
+  }
+</style>
+
+<body>
+  <div id="openJmbfr">点击开启无障碍工具</div>
+  <div id="hanwebFontSize">
+    <!-- 测试接口转音频 -->
+    <div>
+      <!-- 转音频接口 -->
+      <audio controls>
+        <source src="https://tts.hanweb.com/txt_to_voice/interface/trans/txt2voice.do?text=有没有声音&download=1&spd=5"
+          type="audio/mp3">
+        您的浏览器不支持 audio 元素。
+      </audio>
+      <!-- mp3文件 -->
+      <audio controls>
+        <source src="https://tts.hanweb.com/txt_to_voice/voice/6/7/670dd1762f6d5d45da0c900c3f22c100.mp3"
+          type="audio/mp3">
+        您的浏览器不支持 audio 元素。
+      </audio>
+    </div>
+    <!-- 测试js -->
+    <div class="text">我是文字</div>
+  </div>
+</body>
+<script src="./jmbfr.js"></script>
+<script src="./eruda.js"></script>
+<script>eruda.init();</script>
+<!-- <script src="./vConsole.min.js"></script>
+<script>
+  var vConsole = new VConsole();
+</script> -->
+
+</html>

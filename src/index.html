@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 用于修改HTML样式时文件，不参与打包 -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="DuSky">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=yes" />
+  <title>jmbfr</title>
+</head>
+<style>
+  .audio {
+    display: block !important;
+    width: 100px;
+    height: 50px;
+  }
+  #openJmbfr{
+    margin-bottom: 20px;
+  }
+</style>
+
+<body>
+  <div id="openJmbfr">点击开启无障碍工具</div>
+  <div id="hanwebFontSize">
+    <!-- 测试接口转音频 -->
+    <div style="margin-bottom: 20px;">
+      <audio controls>
+        <source src="https://tts.hanweb.com/txt_to_voice/interface/trans/txt2voice.do?text=有没有声音&download=1&spd=5"
+          type="audio/mp3">
+        您的浏览器不支持 audio 元素。
+      </audio>
+    </div>
+    <!-- 测试js -->
+    <div>我是文字</div>
+  </div>
+  <!-- 嵌入 document.writeln 内容 -->
+  <!-- <div></div> -->
+</body>
+<script src="./index.js"></script>
+<!-- <script src="../dist/jmbfr.js"></script> -->
+
+</html>

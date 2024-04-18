@@ -1,0 +1,367 @@
+.tip_box {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000bf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.tip {
+  width: 85%;
+}
+.tip_title {
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.tip_content {
+  font-family: PingFangSC-SNaNpxibold;
+  font-weight: 600;
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+.close {
+  width: 48px;
+  line-height: 48px;
+  background-color: #d9363e;
+  margin: 0 auto;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+.accessibility {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+}
+
+#hanwebFontSize {
+  max-height: 100vh;
+}
+
+#audioFile {
+  display: none;
+}
+
+.showAccessibility {
+  display: block !important;
+}
+
+.accessibility .accessibility-box {
+  background: #ffffff;
+  box-shadow: 0px -3px 7.5px 2px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accessibility .accessibility-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.accessibility .accessibility-btn span {
+  font-family: PingFangSC-Regular;
+  font-size: 19px;
+  color: #333333;
+  text-align: center;
+  font-weight: 400;
+}
+
+.accessibility .colorMatching {
+  padding: 16.5px 0 16px;
+}
+
+.accessibility .colorMatching img {
+  width: 33px;
+  height: 33px;
+  margin-bottom: 8px;
+}
+
+.accessibility .fontIcon {
+  padding: 15.5px 0 16px;
+}
+
+.accessibility .fontIcon img {
+  width: 27.5px;
+  height: 34px;
+  margin-bottom: 8px;
+}
+
+.accessibility .readingScreen {
+  padding: 20.18px 0 16px;
+}
+
+.accessibility .readingScreen img {
+  width: 34px;
+  height: 26px;
+  margin-bottom: 11px;
+}
+
+.accessibility .signOut {
+  padding: 16px 0 16px;
+}
+
+.accessibility .signOut img {
+  width: 33px;
+  height: 33px;
+  margin-bottom: 8px;
+}
+
+/*  选中背景色 */
+.accessibility .checkboxActive {
+  background: #1990ff;
+}
+
+.accessibility .checkboxActive span {
+  color: #ffffff;
+}
+
+.displayShowTools {
+  display: flex !important;
+}
+
+/* 上方调节工具 */
+#colorMatchingTools {
+  display: none;
+}
+
+#readingTools {
+  display: none;
+}
+
+#fontSizeTools {
+  display: none;
+}
+
+.accessibility .accessibility-toolsBox {
+  padding: 12px;
+  text-align: center;
+}
+
+.accessibility-toolsBox .readingScreenTools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.accessibility-toolsBox .readingScreenBtn {
+  flex: 1;
+  padding: 12px 0;
+  border: 1px solid rgba(136, 136, 136, 1);
+  border-radius: 4px;
+  font-family: PingFangSC-Regular;
+  font-size: 19px;
+  color: #333333;
+  text-align: center;
+  font-weight: 400;
+  margin-right: 12px;
+  background: #ffffff !important;
+}
+
+.accessibility-toolsBox .readingScreenBtn:last-child {
+  margin-right: 0;
+}
+
+/*  选中背景色 */
+.accessibility-toolsBox .checkboxActive {
+  background: #1990ff !important;
+  color: #ffffff !important;
+}
+
+.accessibility-toolsBox .default {
+  border: 1px solid rgba(136, 136, 136, 1);
+  color: #333333;
+  background: #ffffff !important;
+}
+
+.accessibility-toolsBox .navyBlue {
+  background: #003060 !important;
+}
+
+.accessibility-toolsBox .chocolate {
+  background: #692627 !important;
+}
+
+.accessibility-toolsBox .black {
+  background: #333333 !important;
+}
+
+.accessibility-toolsBox .forest {
+  background: #009208 !important;
+}
+
+.accessibility-toolsBox .colorBorder {
+  border: 2px solid yellow !important;
+}
+
+/* 默认选中状态 */
+.hanwebcheckDefaultActive {
+  /* // text-decoration: underline !important; //下划线
+      // text-decoration-style: wavy !important; //波浪线
+      // text-decoration-color: red !important; //下划线颜色
+      // text-underline-offset: 5px !important; //距离文字距离 */
+  outline: 1px solid #ed1941 !important;
+}
+
+.formOnlyRead {
+  pointer-events: none;
+}
+
+.navyBlue {
+  background: #003060 !important;
+  color: #ffffff !important;
+}
+
+.chocolate {
+  background: #692627 !important;
+  color: #ffffff !important;
+}
+
+.black {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+.forest {
+  background: #009208 !important;
+  color: #ffffff !important;
+}
+.navyBlue-defaultMode {
+  background: #00335c !important;
+  color: #ffffff !important;
+}
+.navyBlue-blackMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.navyBlue-softMode {
+  background: #34444f !important;
+  color: #ffffff !important;
+}
+.navyBlue-hightlightMode {
+  background: #001d67 !important;
+  color: #ffffff !important;
+}
+.navyBlue-highcontrastMode {
+  background: #000019 !important;
+  color: #ffffff !important;
+}
+.navyBlue-greyMode {
+  background: #01131b !important;
+  color: #ffffff !important;
+}
+
+.chocolate-defaultMode {
+  background: #622b2b !important;
+  color: #ffffff !important;
+}
+.chocolate-blackMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.chocolate-softMode {
+  background: #5b4540 !important;
+  color: #ffffff !important;
+}
+.chocolate-hightlightMode {
+  background: #700000 !important;
+  color: #ffffff !important;
+}
+.chocolate-highcontrastMode {
+  background: #210000 !important;
+  color: #ffffff !important;
+}
+.chocolate-greyMode {
+  background: #271917 !important;
+  color: #ffffff !important;
+}
+
+.black-defaultMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-blackMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-softMode {
+  background: #2b2826 !important;
+  color: #ffffff !important;
+}
+.black-hightlightMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-highcontrastMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-greyMode {
+  background: #53514d !important;
+  color: #ffffff !important;
+}
+
+.forest-defaultMode {
+  background: #248a22 !important;
+  color: #ffffff !important;
+}
+.forest-blackMode {
+  background: #002400 !important;
+  color: #ffffff !important;
+}
+.forest-softMode {
+  background: #4f7144 !important;
+  color: #ffffff !important;
+}
+.forest-hightlightMode {
+  background: #00ba01 !important;
+  color: #ffffff !important;
+}
+.forest-highcontrastMode {
+  background: #026000 !important;
+  color: #ffffff !important;
+}
+.forest-greyMode {
+  background: #43583d !important;
+  color: #ffffff !important;
+}
+
+.pdb100 {
+  overflow: auto;
+  padding-bottom: 100px !important;
+}
+.pdb165 {
+  padding-bottom: 190px !important;
+}
+.pdb360 {
+  padding-bottom: 380px !important;
+}
+body #hanwebFontSize .normalFontSize {
+  font-size: 18px !important;
+}
+body #hanwebFontSize .moreFontSize {
+  font-size: 20.6px !important;
+}
+body #hanwebFontSize .mastFontSize {
+  font-size: 23.4px !important;
+}
+.ariafontcontent{
+  font-size:18px
+}
