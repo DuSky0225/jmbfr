@@ -1,28 +1,381 @@
-// css
-import "./index.css";
-// images
-import colorMatchingSvg from "./img/colorMatching.svg";
-import colorMatchingAcSvg from "./img/colorMatchingAc.svg";
-import readingScreenSvg from "./img/readingScreen.svg";
-import readingScreenAcSvg from "./img/readingScreenAc.svg";
-import fontIconSvg from "./img/fontIcon.svg";
-import fontIconAcSvg from "./img/fontIconAc.svg";
-import signOutSvg from "./img/signOut.svg";
-import signOutAcSvg from "./img/signOutAc.svg";
+document.writeln(`
+<style>
+.tip_box {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000bf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.tip {
+  width: 85%;
+}
+.tip_title {
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.tip_content {
+  font-family: PingFangSC-SNaNpxibold;
+  font-weight: 600;
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+.close {
+  width: 48px;
+  line-height: 48px;
+  background-color: #d9363e;
+  margin: 0 auto;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+}
+.accessibility {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+}
 
-let svgs = {
-  colorMatchingSvg,
-  colorMatchingAcSvg,
-  readingScreenSvg,
-  readingScreenAcSvg,
-  fontIconSvg,
-  fontIconAcSvg,
-  signOutSvg,
-  signOutAcSvg,
-};
+#hanwebFontSize {
+  max-height: 100vh;
+}
+
+#audioFile {
+  display: none;
+}
+
+.showAccessibility {
+  display: block !important;
+}
+
+.accessibility .accessibility-box {
+  background: #ffffff;
+  box-shadow: 0px -3px 7.5px 2px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accessibility .accessibility-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.accessibility .accessibility-btn span {
+  font-family: PingFangSC-Regular;
+  font-size: 19px;
+  color: #333333;
+  text-align: center;
+  font-weight: 400;
+}
+
+.accessibility .colorMatching {
+  padding: 16.5px 0 16px;
+}
+
+.accessibility .colorMatching img {
+  width: 33px;
+  height: 33px;
+  margin-bottom: 8px;
+}
+
+.accessibility .fontIcon {
+  padding: 15.5px 0 16px;
+}
+
+.accessibility .fontIcon img {
+  width: 27.5px;
+  height: 34px;
+  margin-bottom: 8px;
+}
+
+.accessibility .readingScreen {
+  padding: 20.18px 0 16px;
+}
+
+.accessibility .readingScreen img {
+  width: 34px;
+  height: 26px;
+  margin-bottom: 11px;
+}
+
+.accessibility .signOut {
+  padding: 16px 0 16px;
+}
+
+.accessibility .signOut img {
+  width: 33px;
+  height: 33px;
+  margin-bottom: 8px;
+}
+
+/*  选中背景色 */
+.accessibility .checkboxActive {
+  background: #1990ff;
+}
+
+.accessibility .checkboxActive span {
+  color: #ffffff;
+}
+
+.displayShowTools {
+  display: flex !important;
+}
+
+/* 上方调节工具 */
+#colorMatchingTools {
+  display: none;
+}
+
+#readingTools {
+  display: none;
+}
+
+#fontSizeTools {
+  display: none;
+}
+
+.accessibility .accessibility-toolsBox {
+  padding: 12px;
+  text-align: center;
+}
+
+.accessibility-toolsBox .readingScreenTools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.accessibility-toolsBox .readingScreenBtn {
+  flex: 1;
+  padding: 12px 0;
+  border: 1px solid rgba(136, 136, 136, 1);
+  border-radius: 4px;
+  font-family: PingFangSC-Regular;
+  font-size: 19px;
+  color: #333333;
+  text-align: center;
+  font-weight: 400;
+  margin-right: 12px;
+  background: #ffffff !important;
+}
+
+.accessibility-toolsBox .readingScreenBtn:last-child {
+  margin-right: 0;
+}
+
+/*  选中背景色 */
+.accessibility-toolsBox .checkboxActive {
+  background: #1990ff !important;
+  color: #ffffff !important;
+}
+
+.accessibility-toolsBox .default {
+  border: 1px solid rgba(136, 136, 136, 1);
+  color: #333333;
+  background: #ffffff !important;
+}
+
+.accessibility-toolsBox .navyBlue {
+  background: #003060 !important;
+}
+
+.accessibility-toolsBox .chocolate {
+  background: #692627 !important;
+}
+
+.accessibility-toolsBox .black {
+  background: #333333 !important;
+}
+
+.accessibility-toolsBox .forest {
+  background: #009208 !important;
+}
+
+.accessibility-toolsBox .colorBorder {
+  border: 2px solid yellow !important;
+}
+
+/* 默认选中状态 */
+.hanwebcheckDefaultActive {
+  /* // text-decoration: underline !important; //下划线
+      // text-decoration-style: wavy !important; //波浪线
+      // text-decoration-color: red !important; //下划线颜色
+      // text-underline-offset: 5px !important; //距离文字距离 */
+  outline: 1px solid #ed1941 !important;
+}
+
+.formOnlyRead {
+  pointer-events: none;
+}
+
+.navyBlue {
+  background: #003060 !important;
+  color: #ffffff !important;
+}
+
+.chocolate {
+  background: #692627 !important;
+  color: #ffffff !important;
+}
+
+.black {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+.forest {
+  background: #009208 !important;
+  color: #ffffff !important;
+}
+.navyBlue-defaultMode {
+  background: #00335c !important;
+  color: #ffffff !important;
+}
+.navyBlue-blackMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.navyBlue-softMode {
+  background: #34444f !important;
+  color: #ffffff !important;
+}
+.navyBlue-hightlightMode {
+  background: #001d67 !important;
+  color: #ffffff !important;
+}
+.navyBlue-highcontrastMode {
+  background: #000019 !important;
+  color: #ffffff !important;
+}
+.navyBlue-greyMode {
+  background: #01131b !important;
+  color: #ffffff !important;
+}
+
+.chocolate-defaultMode {
+  background: #622b2b !important;
+  color: #ffffff !important;
+}
+.chocolate-blackMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.chocolate-softMode {
+  background: #5b4540 !important;
+  color: #ffffff !important;
+}
+.chocolate-hightlightMode {
+  background: #700000 !important;
+  color: #ffffff !important;
+}
+.chocolate-highcontrastMode {
+  background: #210000 !important;
+  color: #ffffff !important;
+}
+.chocolate-greyMode {
+  background: #271917 !important;
+  color: #ffffff !important;
+}
+
+.black-defaultMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-blackMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-softMode {
+  background: #2b2826 !important;
+  color: #ffffff !important;
+}
+.black-hightlightMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-highcontrastMode {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+.black-greyMode {
+  background: #53514d !important;
+  color: #ffffff !important;
+}
+
+.forest-defaultMode {
+  background: #248a22 !important;
+  color: #ffffff !important;
+}
+.forest-blackMode {
+  background: #002400 !important;
+  color: #ffffff !important;
+}
+.forest-softMode {
+  background: #4f7144 !important;
+  color: #ffffff !important;
+}
+.forest-hightlightMode {
+  background: #00ba01 !important;
+  color: #ffffff !important;
+}
+.forest-highcontrastMode {
+  background: #026000 !important;
+  color: #ffffff !important;
+}
+.forest-greyMode {
+  background: #43583d !important;
+  color: #ffffff !important;
+}
+
+.pdb100 {
+  overflow: auto;
+  padding-bottom: 100px !important;
+}
+.pdb165 {
+  padding-bottom: 190px !important;
+}
+.pdb360 {
+  padding-bottom: 380px !important;
+}
+body #hanwebFontSize .normalFontSize {
+  font-size: 18px !important;
+}
+body #hanwebFontSize .moreFontSize {
+  font-size: 20.6px !important;
+}
+body #hanwebFontSize .mastFontSize {
+  font-size: 23.4px !important;
+}
+</style>
+<style id="ariabodyscale">
+  .ariafontcontent{
+    font-size:18px
+  }
+</style>
+`);
 
 // html
+
 document.writeln(`
+
 <div id="accessibility" class="accessibility">
 <audio id="audioFile"></audio>
 <div class="accessibility-toolsBox">
@@ -34,18 +387,21 @@ document.writeln(`
         <div
           id="defaultMode"
           class="readingScreenBtn checkboxActive"
+          onclick="changeMode('defaultMode')"
         >
           默认
         </div>
         <div
           id="blackMode"
           class="readingScreenBtn"
+          onclick="changeMode('blackMode')"
         >
           黑暗
         </div>
         <div
           id="softMode"
           class="readingScreenBtn"
+          onclick="changeMode('softMode')"
         >
           柔和
         </div>
@@ -54,18 +410,21 @@ document.writeln(`
         <div
           id="hightlightMode"
           class="readingScreenBtn"
+          onclick="changeMode('hightlightMode')"
         >
           高亮
         </div>
         <div
           id="highcontrastMode"
           class="readingScreenBtn"
+          onclick="changeMode('highcontrastMode')"
         >
           高对比
         </div>
         <div
           id="greyMode"
           class="readingScreenBtn"
+          onclick="changeMode('greyMode')"
         >
           灰度
         </div>
@@ -76,30 +435,35 @@ document.writeln(`
       <div
         id="default"
         class="readingScreenBtn default colorBorder"
+        onclick="changeBackground('default')"
       >
         A
       </div>
       <div
         id="navyBlue"
         class="readingScreenBtn navyBlue"
+        onclick="changeBackground('navyBlue')"
       >
         A
       </div>
       <div
         id="chocolate"
         class="readingScreenBtn chocolate"
+        onclick="changeBackground('chocolate')"
       >
         A
       </div>
       <div
         id="black"
         class="readingScreenBtn black"
+        onclick="changeBackground('black')"
       >
         A
       </div>
       <div
         id="forest"
         class="readingScreenBtn forest"
+        onclick="changeBackground('forest')"
       >
         A
       </div>
@@ -110,22 +474,25 @@ document.writeln(`
     <div
       id="normalSpeakRate"
       class="readingScreenBtn checkboxActive"
+      onclick="adjustSpeakRate(5,'normalSpeakRate')"
     >
       正常
     </div>
     <div
       id="quickenSpeakRate"
       class="readingScreenBtn"
+      onclick="adjustSpeakRate(9,'quickenSpeakRate')"
     >
       加快
     </div>
     <div
       id="SlowSpeakRate"
       class="readingScreenBtn"
+      onclick="adjustSpeakRate(1,'SlowSpeakRate')"
     >
       缓慢
     </div>
-    <div id="closeReading" class="readingScreenBtn">
+    <div class="readingScreenBtn" onclick="closeAccessibleReading()">
       关闭读屏
     </div>
   </div>
@@ -134,18 +501,21 @@ document.writeln(`
     <div
       id="normalFontSize"
       class="readingScreenBtn checkboxActive"
+      onclick="adjustFontSize('normalFontSize')"
     >
       原始大小
     </div>
     <div
       id="moreFontSize"
       class="readingScreenBtn"
+      onclick="adjustFontSize('moreFontSize')"
     >
       较大
     </div>
     <div
       id="mastFontSize"
       class="readingScreenBtn"
+      onclick="adjustFontSize('mastFontSize')"
     >
       特大
     </div>
@@ -155,17 +525,19 @@ document.writeln(`
   <div
     id="colorMatching"
     class="accessibility-btn colorMatching"
+    onclick="showTools('colorMatchingTools','colorMatching')"
   >
-    <img id="colorMatchingImg"  src="${colorMatchingSvg}" />
+    <img id="colorMatchingImg" src="../img/colorMatching.svg" />
     <span>配色</span>
   </div>
   <div
     id="readingScreen"
     class="accessibility-btn readingScreen"
+    onclick="showTools('readingTools','readingScreen'); openAccessibleReading()"
   >
     <img
       id="readingScreenImg"
-      src="${readingScreenSvg}"
+      src="../img/readingScreen.svg"
       alt="读屏"
     />
     <span>读屏</span>
@@ -173,16 +545,17 @@ document.writeln(`
   <div
     id="fontIcon"
     class="accessibility-btn fontIcon"
+    onclick="showTools('fontSizeTools','fontIcon')"
   >
-    <img id="fontIconImg" src="${fontIconSvg}" alt="字体" />
+    <img id="fontIconImg" src="../img/fontIcon.svg" alt="字体" />
     <span>字体</span>
   </div>
-  <div id="signOut" class="accessibility-btn signOut">
-    <img src="${signOutSvg}" alt="退出" />
+  <div class="accessibility-btn signOut" onclick="signOut()">
+    <img src="../img/signOut.svg" alt="退出" />
     <span>退出</span>
   </div>
 </div>
-<div id="tip" class="tip_box">
+<div id="tip" class="tip_box" onclick="handleClose()">
   <div class="tip">
     <div class="tip_title">友情提示</div>
     <div class="tip_content">
@@ -214,7 +587,6 @@ var currentSpeakRate =
   localStorage.getItem("currentSpeakRate") || "normalSpeakRate"; //当前语速
 var currentHtmlFontSize =
   localStorage.getItem("currentHtmlFontSize") || "normalFontSize"; //当前字体大小
-
 window.onload = function initFunction() {
   //   判断展示
   // 底部工具条是否展示
@@ -278,100 +650,6 @@ window.onload = function initFunction() {
   }
 };
 
-// 开启无障碍
-document.getElementById("openJmbfr").addEventListener("click", function () {
-  document.getElementById("accessibility").classList.add("showAccessibility");
-  localStorage.setItem("ishowToolbar", true);
-  document.getElementById("hanwebFontSize").classList.add("pdb100");
-});
-// 关闭阅读
-document.getElementById("closeReading").addEventListener("click", function () {
-  closeAccessibleReading();
-});
-// 模式
-document.getElementById("defaultMode").addEventListener("click", function () {
-  changeMode("defaultMode");
-});
-document.getElementById("blackMode").addEventListener("click", function () {
-  changeMode("blackMode");
-});
-document.getElementById("softMode").addEventListener("click", function () {
-  changeMode("softMode");
-});
-document
-  .getElementById("hightlightMode")
-  .addEventListener("click", function () {
-    changeMode("hightlightMode");
-  });
-document
-  .getElementById("highcontrastMode")
-  .addEventListener("click", function () {
-    changeMode("highcontrastMode");
-  });
-document.getElementById("greyMode").addEventListener("click", function () {
-  changeMode("greyMode");
-});
-// 配色
-document.getElementById("colorMatching").addEventListener("click", function () {
-  showTools("colorMatchingTools", "colorMatching");
-});
-document.getElementById("default").addEventListener("click", function () {
-  changeBackground("default");
-});
-document.getElementById("navyBlue").addEventListener("click", function () {
-  changeBackground("navyBlue");
-});
-document.getElementById("chocolate").addEventListener("click", function () {
-  changeBackground("chocolate");
-});
-document.getElementById("black").addEventListener("click", function () {
-  changeBackground("black");
-});
-document.getElementById("forest").addEventListener("click", function () {
-  changeBackground("forest");
-});
-// 读屏
-document.getElementById("readingScreen").addEventListener("click", function () {
-  showTools("readingTools", "readingScreen");
-  openAccessibleReading();
-});
-document
-  .getElementById("normalSpeakRate")
-  .addEventListener("click", function () {
-    adjustSpeakRate(5, "normalSpeakRate");
-  });
-document
-  .getElementById("quickenSpeakRate")
-  .addEventListener("click", function () {
-    adjustSpeakRate(9, "quickenSpeakRate");
-  });
-document.getElementById("SlowSpeakRate").addEventListener("click", function () {
-  adjustSpeakRate(1, "SlowSpeakRate");
-});
-// 字体大小
-document.getElementById("fontIcon").addEventListener("click", function () {
-  showTools("fontSizeTools", "fontIcon");
-});
-document
-  .getElementById("normalFontSize")
-  .addEventListener("click", function () {
-    adjustFontSize("normalFontSize");
-  });
-document.getElementById("moreFontSize").addEventListener("click", function () {
-  adjustFontSize("moreFontSize");
-});
-document.getElementById("mastFontSize").addEventListener("click", function () {
-  adjustFontSize("mastFontSize");
-});
-// 关闭
-document.getElementById("signOut").addEventListener("click", function () {
-  signOut();
-});
-// 提示
-document.getElementById("tip").addEventListener("click", function () {
-  handleClose();
-});
-
 // 开启监听事件
 function openEventListener() {
   document
@@ -394,9 +672,8 @@ function showTools(idName, className) {
       .getElementById(prevShowToolsName)
       .classList.remove("displayShowTools");
     document.getElementById(currentToolName).classList.remove("checkboxActive");
-    document.getElementById(currentToolName + "Img").src = `${
-      svgs[currentToolName + "Svg"]
-    }`;
+    document.getElementById(currentToolName + "Img").src =
+      "../img/" + currentToolName + ".svg";
   }
   let classList = document.getElementById(idName).classList;
   if (classList.contains("displayShowTools")) {
@@ -419,13 +696,11 @@ function showTools(idName, className) {
     localStorage.setItem("currentToolName", currentToolName);
   }
   if (document.getElementById(className).classList.contains("checkboxActive")) {
-    document.getElementById(className + "Img").src = `${
-      svgs[className + "AcSvg"]
-    }`;
+    document.getElementById(className + "Img").src =
+      "../img/" + className + "Ac.svg";
   } else {
-    document.getElementById(className + "Img").src = `${
-      svgs[className + "Svg"]
-    }`;
+    document.getElementById(className + "Img").src =
+      "../img/" + className + ".svg";
   }
 }
 // 调节字体
@@ -460,6 +735,11 @@ function adjustFontSize(className, isSpeak = true) {
     if (isUsing) {
       handleStop(text);
     }
+    // let dom = document.getElementById("hanwebFontSize");
+    // if (dom) {
+    //   // dom.style = `transform: scale(${htmlFontSizeRate}); transform-origin: 0px 0px;`;
+    //   dom.style = `zoom:${htmlFontSizeRate}`;
+    // }
     for (let i = 0; i < domList.length; i++) {
       domList[i].classList.remove("normalFontSize");
       domList[i].classList.remove("moreFontSize");
@@ -597,6 +877,8 @@ function openAccessibleReading() {
   // 判断是否已开启
   if (!isUsing) {
     // 监听点击事件并模拟双击
+    // window.addEventListener("click", getSectionText);
+    // window.addEventListener("click", testDblClick);
     openEventListener();
     // 读屏使用中
     isUsing = true;
@@ -633,10 +915,12 @@ function adjustSpeakRate(rate, className, isSpeak = true) {
 }
 // 模拟双击事件
 function testDblClick(e) {
+  // console.log(e);
   e.stopPropagation();
   e.preventDefault();
   if (!isUsing) return;
   var href = "";
+  // console.log(e.onclick);
   if (e.target.nodeName == "A" || e.target.parentNode.nodeName == "A") {
     href = e.target.href || e.target.parentNode.href || "";
     e.preventDefault();
@@ -670,6 +954,12 @@ function getSectionText(e) {
   // 判断选中标签 添加前置提示语
   let nodeName = e.target.nodeName;
   // 点击空白处时不阅读
+  //   if (e.path[1].nodeName == 'BODY'||e.path[2].nodeName == 'BODY') {
+  //       return
+  //   } else
+  //   if (e.path[0].nodeName == "HTML" || e.path[0].nodeName == "BODY") {
+  //     return;
+  //   } else
   if (nodeName == "A") {
     tipsText = "链接：";
   } else if (nodeName == "IMG") {
@@ -703,51 +993,32 @@ function getSectionText(e) {
 }
 // 语音停止
 function handleStop(text) {
-  // console.log("text", text);
-  text = encodeURI(text);
-  if (window.speechSynthesis) {
-    const synth = window.speechSynthesis;
-    const msg = new SpeechSynthesisUtterance();
-    msg.text = text; // 文字内容
-    msg.lang = "zh-CN"; // 使用的语言:中文
-    msg.volume = 1; // 声音音量：1 区间范围是0到1
-    msg.rate = this.speakRate; // 语速：1 范围是0.1到10
-    msg.pitch = 1; // 音高：1 范围从0（最小）到2（最大）
-    // msg.voice = this.getWindowVoice()  // 使用本地服务合成语音(若是获取不到 请异步获取, 加一个setTimeout)
-    // voiceURI:'Grandpa (法语（法国）)', //指定希望使用的声音和服务，字符串。
-    synth.speak(msg); // 播放
-  } else {
-    // mp3播放地址
-    // var audioSrc = `https://tts.hanweb.com/txt_to_voice/interface/trans/txt2voice.do?text=${text}&download=1&spd=${speakRate}`;
-    // audio.src = audioSrc;
-    // audio.load();
-    // audio.play();
-    const baseUrl = "https://tts.hanweb.com/txt_to_voice";
-    let url = `${baseUrl}/interface/trans/txt2voice.do?text=${text}&download=1&spd=${speakRate}&path=1`;
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        // 将响应解析为 JSON
-        return response.text();
-      })
-      .then((res) => {
-        // mp3播放地址
-        var audioSrc = baseUrl + res;
-        audio.src = audioSrc;
-        audio.load();
-        audio.play();
-      });
-  }
+  // text = encodeURI('123');
+  // /voice/a/8/a87e862c3d647cea3941fbc550a80646.mp3
+  const baseUrl = "https://tts.hanweb.com/txt_to_voice";
+  let url = `${baseUrl}/interface/trans/txt2voice.do?text=${text}&download=1&spd=${speakRate}&path=1`;
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      // 将响应解析为 JSON
+      return response.text();
+    })
+    .then((res) => {
+      // mp3播放地址
+      var audioSrc = baseUrl + res;
+      audio.src = audioSrc;
+      audio.load();
+      audio.play();
+    });
 }
 // 退出无障碍服务
 function closeAccessibleReading(isSpeak = true) {
   if (event) event.stopPropagation();
   // 取消监听事件
   //   window.removeEventListener("click", getSectionText);
-  // window.removeEventListener("click", testDblClick);
-  closeEventListener();
+  window.removeEventListener("click", testDblClick);
   speakRate = 5;
   localStorage.setItem("speakRate", speakRate);
   if (isSpeak) {
@@ -755,7 +1026,7 @@ function closeAccessibleReading(isSpeak = true) {
     handleStop("读屏已关闭");
   }
   adjustSpeakRate(5, "normalSpeakRate", false);
-  document.getElementById("readingScreenImg").src = svgs.readingScreenSvg;
+  document.getElementById("readingScreenImg").src = "../img/readingScreen.svg";
   document.getElementById("readingScreen").classList.remove("checkboxActive");
   document.getElementById("readingTools").classList.remove("displayShowTools");
   // 读屏已关闭
@@ -824,9 +1095,8 @@ function signOut() {
       .getElementById(prevShowToolsName)
       .classList.remove("displayShowTools");
     document.getElementById(currentToolName).classList.remove("checkboxActive");
-    document.getElementById(currentToolName + "Img").src = `${
-      svgs[currentToolName + "Svg"]
-    }`;
+    document.getElementById(currentToolName + "Img").src =
+      "../img/" + currentToolName + ".svg";
   }
 
   // 数据重设
@@ -839,7 +1109,9 @@ function signOut() {
   currentColor = "default"; //当前配色
   currentMode = "defaultMode"; //当前模式
   currentSpeakRate = "normalSpeakRate"; //当前语速
+  // console.log(currentSpeakRate);
   currentHtmlFontSize = "normalFontSize"; //当前字体大小
+  //   document.getElementById("app").style.paddingBottom = "";、
 
   document
     .getElementById("accessibility")
@@ -847,4 +1119,11 @@ function signOut() {
   document.getElementById("hanwebFontSize").classList.remove("pdb100");
   document.getElementById("hanwebFontSize").classList.remove("pdb165");
   document.getElementById("hanwebFontSize").classList.remove("pdb360");
+}
+// 开启无障碍
+function openMethod() {
+  document.getElementById("accessibility").classList.add("showAccessibility");
+  localStorage.setItem("ishowToolbar", true);
+  document.getElementById("hanwebFontSize").classList.add("pdb100");
+  initFunction();
 }
