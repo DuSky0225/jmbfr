@@ -126,7 +126,7 @@ document.writeln(`
       缓慢
     </div>
     <div id="closeReading" class="readingScreenBtn">
-      关闭读屏
+      关闭
     </div>
   </div>
   <!-- 字体调节工具 -->
@@ -704,26 +704,26 @@ function getSectionText(e) {
 // 语音停止
 function handleStop(text) {
   // console.log("text", text);
-  text = encodeURI(text);
-  if (window.speechSynthesis) {
-    const synth = window.speechSynthesis;
-    const msg = new SpeechSynthesisUtterance();
-    msg.text = text; // 文字内容
-    msg.lang = "zh-CN"; // 使用的语言:中文
-    msg.volume = 1; // 声音音量：1 区间范围是0到1
-    msg.rate = this.speakRate; // 语速：1 范围是0.1到10
-    msg.pitch = 1; // 音高：1 范围从0（最小）到2（最大）
-    // msg.voice = this.getWindowVoice()  // 使用本地服务合成语音(若是获取不到 请异步获取, 加一个setTimeout)
-    // voiceURI:'Grandpa (法语（法国）)', //指定希望使用的声音和服务，字符串。
-    synth.speak(msg); // 播放
-  } else {
+  // text = encodeURI(text);
+  // if (window.speechSynthesis) {
+  //   const synth = window.speechSynthesis;
+  //   const msg = new SpeechSynthesisUtterance();
+  //   msg.text = text; // 文字内容
+  //   msg.lang = "zh-CN"; // 使用的语言:中文
+  //   msg.volume = 1; // 声音音量：1 区间范围是0到1
+  //   msg.rate = speakRate; // 语速：1 范围是0.1到10
+  //   msg.pitch = 1; // 音高：1 范围从0（最小）到2（最大）
+  //   // msg.voice = this.getWindowVoice()  // 使用本地服务合成语音(若是获取不到 请异步获取, 加一个setTimeout)
+  //   // voiceURI:'Grandpa (法语（法国）)', //指定希望使用的声音和服务，字符串。
+  //   synth.speak(msg); // 播放
+  // } else {
     // mp3播放地址
-    // var audioSrc = `https://tts.hanweb.com/txt_to_voice/interface/trans/txt2voice.do?text=${text}&download=1&spd=${speakRate}`;
+    // var audioSrc = `https://tts.hanweb.com/txt_to_voice/interface/trans/txt2voice.do?text=${text}&download=1&sp}`;
     // audio.src = audioSrc;
     // audio.load();
     // audio.play();
     const baseUrl = "https://tts.hanweb.com/txt_to_voice";
-    let url = `${baseUrl}/interface/trans/txt2voice.do?text=${text}&download=1&spd=${speakRate}&path=1`;
+    let url = `${baseUrl}/interface/trans/txt2voice.do?text=${text}&download=1&&spd=${speakRate}&path=1`;
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -739,14 +739,12 @@ function handleStop(text) {
         audio.load();
         audio.play();
       });
-  }
+  // }
 }
 // 退出无障碍服务
 function closeAccessibleReading(isSpeak = true) {
   if (event) event.stopPropagation();
   // 取消监听事件
-  //   window.removeEventListener("click", getSectionText);
-  // window.removeEventListener("click", testDblClick);
   closeEventListener();
   speakRate = 5;
   localStorage.setItem("speakRate", speakRate);
@@ -847,4 +845,11 @@ function signOut() {
   document.getElementById("hanwebFontSize").classList.remove("pdb100");
   document.getElementById("hanwebFontSize").classList.remove("pdb165");
   document.getElementById("hanwebFontSize").classList.remove("pdb360");
+}
+// 开启无障碍
+function openMethod() {
+  document.getElementById("accessibility").classList.add("showAccessibility");
+  localStorage.setItem("ishowToolbar", true);
+  document.getElementById("hanwebFontSize").classList.add("pdb100");
+  // initFunction();
 }
